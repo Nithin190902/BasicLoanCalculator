@@ -16,7 +16,6 @@ export default function LoanChart() {
 
   const labels = rows?.map(r => `M${r.month}`);
   const balanceData = rows.map(r => r.balance);
-  const emiData = rows.map(r => r.emi);
   const bulletsPoints = rows.filter(r => r.extraPrincipal && r.extraPrincipal > 0).map(r => ({ x: r.month, y: r.balance, extra: r.extraPrincipal }));
 
   const annotationObj: any = {};
@@ -49,14 +48,6 @@ export default function LoanChart() {
         pointRadius: 2,
       },
       {
-        label: "EMI (₹)",
-        data: emiData,
-        borderDash: [6, 4],
-        tension: 0.1,
-        fill: false,
-        pointRadius: 0,
-      },
-      {
         label: "Bullets",
         data: bulletsPoints.map(p => ({ x: `M${p.x}`, y: p.y })),
         type: "scatter" as const,
@@ -78,9 +69,15 @@ export default function LoanChart() {
             const i = ctx.dataIndex;
             const row = rows[i];
             if (!row) return "";
-            return `EMI ₹${formatIndianNumber(row.emi)} • Pr ₹${formatIndianNumber(row.principalPaid)} • Int ₹${formatIndianNumber(row.interestPaid)} • Bullet ₹${formatIndianNumber(row.extraPrincipal || 0)} • Bal ₹${formatIndianNumber(row.balance)}`;
-          }
-        }
+            return [
+              `Balance: ₹${formatIndianNumber(row.balance)}`,
+              `EMI: ₹${formatIndianNumber(row.emi)}`,
+              `Principal: ₹${formatIndianNumber(row.principalPaid)}`,
+              `Interest: ₹${formatIndianNumber(row.interestPaid)}`,
+              `Bullet: ₹${formatIndianNumber(row.extraPrincipal || 0)}`,
+            ];
+          },
+        },
       },
       legend: { position: "top" },
       annotation: {
