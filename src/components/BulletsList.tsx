@@ -1,4 +1,5 @@
 import { useLoanStore } from "../store/useLoanStore";
+import { formatIndianNumber } from "../utiles/helper";
 
 export default function BulletsList() {
   const { bullets, updateBullet, removeBullet } = useLoanStore();
@@ -17,7 +18,7 @@ export default function BulletsList() {
         <div key={b.id} className="bullet-row">
           <div style={{flex:1}}>
             <div style={{fontSize:13,color:'#444'}}>Month <strong>{b.month}</strong></div>
-            <div style={{fontSize:13,color:'#444'}}>Amount ₹<strong>{b.amount}</strong></div>
+            <div style={{fontSize:13,color:'#444'}}>Amount ₹<strong>{formatIndianNumber(b.amount)}</strong></div>
           </div>
           <div style={{display:'flex',gap:6}}>
             <button className="small-btn" onClick={()=> {

@@ -1,9 +1,16 @@
 import LoanForm from "./components/LoanForm";
 import BulletsList from "./components/BulletsList";
 import LoanChart from "./components/LoanChart";
-import AmortizationTable from "./components/AmortizationTable";
+import AmortizationTabs from "./components/AmortizationTabs";
+import { useLoanStore } from "./store/useLoanStore";
+import { generateAmortization } from "./utiles/generateAmortization";
+import { useMemo } from "react";
 
 export default function App() {
+
+  const { principal, annualRate, years, bullets, mode } = useLoanStore();
+  const rows = useMemo(() => generateAmortization({ principal, annualRate, years, bullets, mode }), [principal, annualRate, years, bullets, mode]);
+
   return (
     <div className="container">
       <div className="header">
@@ -20,7 +27,7 @@ export default function App() {
         <div>
           <LoanChart />
           <div style={{height:12}} />
-          <AmortizationTable />
+          <AmortizationTabs data={rows} />
         </div>
       </div>
     </div>

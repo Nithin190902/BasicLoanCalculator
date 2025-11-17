@@ -4,6 +4,7 @@ import { Chart, registerables } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
 import { useLoanStore } from "../store/useLoanStore";
 import { generateAmortization } from "../utiles/generateAmortization";
+import { formatIndianNumber } from "../utiles/helper";
 
 Chart.register(...registerables);
 Chart.register(annotationPlugin);
@@ -77,7 +78,7 @@ export default function LoanChart() {
             const i = ctx.dataIndex;
             const row = rows[i];
             if (!row) return "";
-            return `EMI ₹${row.emi} • Pr ₹${row.principalPaid} • Int ₹${row.interestPaid} • Bullet ₹${row.extraPrincipal || 0} • Bal ₹${row.balance}`;
+            return `EMI ₹${formatIndianNumber(row.emi)} • Pr ₹${formatIndianNumber(row.principalPaid)} • Int ₹${formatIndianNumber(row.interestPaid)} • Bullet ₹${formatIndianNumber(row.extraPrincipal || 0)} • Bal ₹${formatIndianNumber(row.balance)}`;
           }
         }
       },
@@ -92,9 +93,9 @@ export default function LoanChart() {
         title: { display: true, text: "Amount (₹)" },
         ticks: {
           callback: function(value: any) {
-            // short formatting
-            if (value >= 1e6) return `${(value/1e6).toFixed(1)}M`;
-            if (value >= 1e3) return `${(value/1e3).toFixed(1)}k`;
+            if (value >= 1e7) return (value / 1e7).toFixed(1) + "Cr"; // Crore
+            if (value >= 1e5) return (value / 1e5).toFixed(1) + "L"; // Lakh
+            if (value >= 1e3) return (value / 1e3).toFixed(1) + "k"; // Thousand
             return String(value);
           }
         }
