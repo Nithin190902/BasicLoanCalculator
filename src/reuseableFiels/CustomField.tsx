@@ -9,7 +9,6 @@ interface CustomFieldProps {
 
 const CustomField: React.FC<CustomFieldProps> = ({
   label,
-  // type = "text", // use text so commas display
   value,
   min,
   step,
