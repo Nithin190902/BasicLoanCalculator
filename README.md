@@ -4,7 +4,7 @@ A transparent home loan EMI calculator that clearly shows **how interest drops a
 
 ## 🔗 Live Demo:
 
-[Calculator](https://basicloancalculator.vercel.app/)
+**[Bullet Home Loan Calculator](https://basicloancalculator.vercel.app/)**
 
 ## 🚩 Problem Statement
 
