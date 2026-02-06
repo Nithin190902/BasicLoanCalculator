@@ -1,73 +1,79 @@
-# React + TypeScript + Vite
+# 🏡 Smart Bullet Home Loan Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A transparent home loan EMI calculator that clearly shows **how interest drops after each bullet (lump-sum) payment**, helping users plan smarter prepayments and reduce long-term interest.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Calculator](https://basicloancalculator.vercel.app/)
 
-## React Compiler
+## 🚩 Problem Statement
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Most home loan calculators show EMI and tenure, but **don’t clearly visualize how interest reduces after bullet (lump-sum) payments**.
 
-## Expanding the ESLint configuration
+This makes it difficult for borrowers to:
+- Understand the real impact of prepayments
+- Plan bullet payments using bonuses, savings, PF, etc.
+- See long-term interest savings clearly
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project fills that gap with **clarity and transparency**.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 💡 What is a Bullet Payment?
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+A **bullet (lump-sum) payment** is an extra amount paid directly towards the **principal** during the loan tenure, in addition to regular EMIs.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Since interest is calculated on the **outstanding principal**, every bullet payment:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Immediately reduces future interest
+- Accelerates principal repayment
+- Shortens loan tenure or reduces EMI
+
+## ✨ Key Features
+
+- 📊 Month-wise loan amortization
+- 💸 Multiple bullet (lump-sum) payments supported
+- 🔄 Mode toggle:
+  - Constant EMI (reduce tenure)
+  - Long-term mode (reduce EMI)
+- 📉 Interest drop visualization (chart)
+- 🧮 Clear principal vs interest breakdown
+
+## 🧠 Smart Repayment Strategy
+
+A common and effective approach:
+
+1. Start with a longer tenure to keep EMIs comfortable
+2. Use bullet payments whenever extra money is available (bonus, savings, PF)
+3. Reduce principal aggressively in the early years
+4. Save a significant amount in total interest
+
+### Example
+
+A ₹50L home loan at 8.5% for 30 years
+→ A ₹5L bullet payment in the early years can:
+  - Reduce the loan by 4–6 years
+  - Save ₹20L+ in interest
+
+This calculator visualizes this **month by month.**
+
+## 🛠 Tech Stack
+
+**Frontend:** React
+**State Management:** Zustand
+**Charts:** react-chartjs-2
+**Core Logic:** Pure frontend loan simulation
+**Rendering:** react-dom
+No backend — All calculations happen *entirely on the frontend.*
+
+## 🚀 Future Scope & Contributions
+This project is actively open for improvement.
+There’s a lot of room to build here, and contributions are welcome 🙌
+
+### Planned / Ideas:
+
+- 🔍 Comparison mode (with vs without bullet payments)
+- 📄 Export to PDF / Excel
+- 🧾 Tax benefit calculation
+- 🏦 Multiple loan comparison
+- 🎛 Adjustable EMI scenarios
