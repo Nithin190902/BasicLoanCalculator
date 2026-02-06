@@ -19,9 +19,9 @@ type State = {
 };
 
 export const useLoanStore = create<State>((set) => ({
-  principal: 1000000,
-  annualRate: 7.5,
-  years: 10,
+  principal: 0,
+  annualRate: 8.5,
+  years: 0,
   mode: "fixed-emi",
   bullets: [],
   setPrincipal: (v) => set({ principal: v }),
