@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function AmortizationTabs({ data }: Props) {
-  const [activeTab, setActiveTab] = useState<"table" | "summary">("table");
+  const [activeTab, setActiveTab] = useState<"table" | "summary">("summary");
 
   return (
     <div className="mt-6 bg-white p-4 rounded-lg shadow-sm">
